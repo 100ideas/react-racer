@@ -2,8 +2,8 @@
 
 - original: https://github.com/jfarmer/react-racer
 - codesandbox fork: https://github.com/100ideas/react-racer/tree/codesandbox
-- codesandbox demo: http://codesandbox.io/s/github/100ideas/react-racer/tree/codesandbox
-  - **NOTE**: this is a `server` codesandbox repo, so you will need to 'fork' it on codesandbox (need account) before it will switch to `server` mode
+- codesandbox demo (fresh) : http://codesandbox.io/s/github/100ideas/react-racer/tree/codesandbox
+- codesandbox demo (9/4/19): https://codesandbox.io/s/38971w83l5
 
 ### setup
 - should just work.
@@ -15,7 +15,7 @@
     - https://socket.io/docs/server-api/#server-origins-value
     - https://stackoverflow.com/questions/24058157/socket-io-node-js-cross-origin-request-blocked
 
-### how this works [on codesandbox](https://codesandbox.io/s/2v0n4v15z0)
+### how this works [on codesandbox](https://codesandbox.io/s/38971w83l5)
 
 The `start` script in `package.json` first uses `svn` to sync root of github repo `jfarmer/react-racer` to codesandbox at `~/.` aka `/sandbox/`. This should ensure visitors/forkers of this codesandbox get an up-to-date demo.
 
@@ -29,8 +29,6 @@ Ran into CORS pain with `socket.io`, maybe b/c codesandbox only lets us expose o
 - `api/api.js`: `const io = socketIo(server).of("/cra-proxy");`
 
 If you want to change the port cra uses internally on the codesandbox server, see `./sandbox.config.json: container.port`.
-
-lastly, to supress CRA 
 
 ### using svn w/ github
 
@@ -77,35 +75,7 @@ Valid options:
 alias l='ls -la'
 
 ```
-
 ---
-
-archive of `package.json`
-
-```json
-{
-  "name": "jfarmer-react-racer",
-  "version": "1.0.0",
-  "description": "jfarmer/react-racer for codesandbox server",
-  "private": false,
-  "workspacesOLD": ["api", "frontend"],
-  "scripts": {
-    "start": "npm-run-all --sequential install:server install:frontend start:both",
-    "install:server": "cd ~/api; yarn install",
-    "install:frontend": "cd ~/frontend; yarn install",
-    "start:both": "npm-run-all --parallel start:server start:frontend",
-    "start:server": "cd api; yarn start",
-    "start:frontend": "cd frontend; yarn start",
-    "syncrepo": "svn checkout -r HEAD --force https://github.com/jfarmer/react-racer/trunk ."
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "nodemon": "1.18.4",
-    "npm-run-all": "^4.1.5"
-  },
-  "keywords": []
-}
-```
 
 archive of `sandbox.config.json`
 
